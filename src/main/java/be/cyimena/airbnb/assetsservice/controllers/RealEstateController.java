@@ -17,13 +17,18 @@ public class RealEstateController {
     private RealEstateRepository realEstateRepository;
 
     @GetMapping("/real_estates/{id}")
-    public RealEstate getRealEstate(@PathVariable Integer id) {
+    public RealEstate getRealEstateById(@PathVariable Integer id) {
         return realEstateRepository.findById(id).orElseThrow(() -> new RealEstateNotFoundException(id));
     }
 
     @GetMapping("/real_estates")
-    public Page<RealEstate> getRealEstates(Pageable pageable){
+    public Page<RealEstate> getAllRealEstates(Pageable pageable) {
         return realEstateRepository.findAll(pageable);
+    }
+
+    @GetMapping("/real_estates/users/{id}")
+    public Page<RealEstate> getRealEstatesByUserId(@PathVariable Integer id, Pageable pageable) {
+        return realEstateRepository.findRealEstatesByUserId(id, pageable);
     }
 
     @GetMapping("/real_estates/search")

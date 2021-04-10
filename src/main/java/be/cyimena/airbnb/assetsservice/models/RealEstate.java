@@ -33,6 +33,9 @@ public class RealEstate implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
+    @ManyToOne
+    private User user;
+
     @JsonIgnore
     @OneToMany(mappedBy = "realEstate")
     Set<Comment> comments;
@@ -121,5 +124,13 @@ public class RealEstate implements Serializable {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -25,6 +25,9 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
+    @OneToMany
+    private Set<RealEstate> realEstates;
+
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     Set<Booking> bookings;
@@ -71,5 +74,12 @@ public class User {
         this.address = address;
     }
 
+    public Set<RealEstate> getRealEstates() {
+        return realEstates;
+    }
+
+    public void setRealEstates(Set<RealEstate> realEstates) {
+        this.realEstates = realEstates;
+    }
 }
 

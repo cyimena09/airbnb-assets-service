@@ -4,6 +4,7 @@ import be.cyimena.airbnb.assetsservice.models.Booking;
 import be.cyimena.airbnb.assetsservice.models.Comment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,6 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
-    List<Comment> findCommentsByRealEstateId(Integer id);
+    List<Comment> findCommentsByRealEstateId(Integer id, Sort sort);
+
 }

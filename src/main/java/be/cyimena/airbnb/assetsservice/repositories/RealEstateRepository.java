@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RealEstateRepository extends JpaRepository<RealEstate, Integer> {
 
+    Page<RealEstate> findRealEstatesByUserId(Integer id, Pageable pageable);
+
     @Query("SELECT re FROM RealEstate re " +
             "INNER JOIN re.address a " +
             "INNER JOIN re.bookings b " +

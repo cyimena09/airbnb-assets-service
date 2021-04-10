@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 
 @Service
 public class UserServiceImpl implements IUserService {
+
     @Autowired
     private UserRepository userRepository;
 

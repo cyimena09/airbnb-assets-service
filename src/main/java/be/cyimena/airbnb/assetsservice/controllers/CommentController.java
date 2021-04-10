@@ -4,7 +4,7 @@ import be.cyimena.airbnb.assetsservice.exceptions.CommentNotFoundException;
 import be.cyimena.airbnb.assetsservice.models.Comment;
 import be.cyimena.airbnb.assetsservice.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +20,11 @@ public class CommentController {
     @GetMapping("/comments/{realEstateId}")
     public List<Comment> getCommentsByRealEstate(@PathVariable Integer realEstateId) {
         // TODO il faudrait ne pas récupérer le real estate associé
-        return commentRepository.findCommentsByRealEstateId(realEstateId);
+        return commentRepository.findCommentsByRealEstateId(realEstateId, Sort.by(Sort.Direction.DESC, "updateAt"));
     }
 
     @PostMapping("/comments")
     public Comment addComment(@RequestBody Comment comment) {
-        System.out.println("ON AJOUTE UN COMMENTAIRE" + comment.getText());
         return this.commentRepository.save(comment);
     }
 

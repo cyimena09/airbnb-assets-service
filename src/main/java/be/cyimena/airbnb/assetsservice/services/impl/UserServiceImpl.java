@@ -4,7 +4,6 @@ import be.cyimena.airbnb.assetsservice.exceptions.UserNotFoundException;
 import be.cyimena.airbnb.assetsservice.repositories.UserRepository;
 import be.cyimena.airbnb.assetsservice.models.User;
 import be.cyimena.airbnb.assetsservice.services.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +13,11 @@ import org.springframework.data.domain.Pageable;
 @Service
 public class UserServiceImpl implements IUserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public Page<User> getUsers(Pageable pageable) {
@@ -25,6 +27,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User getUserById(Integer userId) {
         return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+    }
+
+    @Override
+    public Page<User> getUserByFilter(String firstName, Pageable pageable) {
+        return userRepository.findUserByFirstName(firstName, pageable);
     }
 
     @Override

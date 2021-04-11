@@ -10,6 +10,8 @@ public interface IUserService {
 
     User getUserById(Integer userId);
 
+    Page<User> getUserByFilter(String firstName, Pageable pageable);
+
     User createUser(User User);
 
     User updateUser(Integer userId, User user);

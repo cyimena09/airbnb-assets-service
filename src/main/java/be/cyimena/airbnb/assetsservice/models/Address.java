@@ -1,28 +1,30 @@
 package be.cyimena.airbnb.assetsservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
+@Data
 @Table(name = "address")
 public class Address {
-
-    // ATTRIBUTES
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "address_id")
-    private Integer id;
+    private UUID id;
 
+    @Column(nullable = false)
     private String street;
-
+    @Column(nullable = false)
     private Integer streetNumber;
-
+    @Column(nullable = false)
     private Long PostalCode;
-
+    @Column(nullable = false)
     private String city;
-
+    @Column(nullable = false)
     private String country;
 
     @OneToOne(mappedBy = "address")
@@ -32,71 +34,5 @@ public class Address {
     @OneToOne(mappedBy = "address")
     @JsonIgnore
     private RealEstate realEstate;
-
-    // METHODS
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public Integer getStreetNumber() {
-        return streetNumber;
-    }
-
-    public void setStreetNumber(Integer streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
-    public Long getPostalCode() {
-        return PostalCode;
-    }
-
-    public void setPostalCode(Long postalCode) {
-        PostalCode = postalCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public RealEstate getRealEstate() {
-        return realEstate;
-    }
-
-    public void setRealEstate(RealEstate realEstate) {
-        this.realEstate = realEstate;
-    }
-
-    public RealEstate getUser() {
-        return user;
-    }
-
-    public void setUser(RealEstate user) {
-        this.user = user;
-    }
 
 }

@@ -1,20 +1,25 @@
 package be.cyimena.airbnb.assetsservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NonNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
+@Data
 @Table(name = "users")
 public class User {
-
-    // ATTRIBUTES
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", updatable = false, nullable = false)
-    private Integer id;
+    private UUID id;
 
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String firstName;
@@ -22,8 +27,20 @@ public class User {
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String lastName;
 
+    @Column(columnDefinition = "varchar(255)", nullable = false)
+    private String phoneNumber;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private Timestamp createdDate;
+    @UpdateTimestamp
+    private Timestamp lastModifiedDate;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
 
     @OneToMany
     private Set<RealEstate> realEstates;
@@ -32,54 +49,5 @@ public class User {
     @OneToMany(mappedBy = "user")
     Set<Booking> bookings;
 
-    // METHODS
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Set<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(Set<Booking> bookings) {
-        this.bookings = bookings;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Set<RealEstate> getRealEstates() {
-        return realEstates;
-    }
-
-    public void setRealEstates(Set<RealEstate> realEstates) {
-        this.realEstates = realEstates;
-    }
 }
 

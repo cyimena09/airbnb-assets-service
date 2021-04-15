@@ -1,11 +1,14 @@
 package be.cyimena.airbnb.assetsservice.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
+@Data
 @Table(name = "bookings")
 public class Booking {
 
@@ -14,7 +17,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id", updatable = false, nullable = false)
-    private Integer id;
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -34,63 +37,5 @@ public class Booking {
     private String status;
 
     private  Integer rating;
-
-    // METHODS
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public RealEstate getRealEstate() {
-        return realEstate;
-    }
-
-    public void setRealEstate(RealEstate realEstate) {
-        this.realEstate = realEstate;
-    }
-
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
 
 }

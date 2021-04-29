@@ -1,8 +1,7 @@
-package be.cyimena.airbnb.assetsservice.models;
+package be.cyimena.airbnb.assetsservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.NonNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 

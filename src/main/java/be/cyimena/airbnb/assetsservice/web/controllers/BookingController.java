@@ -1,8 +1,8 @@
-package be.cyimena.airbnb.assetsservice.controllers;
+package be.cyimena.airbnb.assetsservice.web.controllers;
 
 import be.cyimena.airbnb.assetsservice.exceptions.BookingNotFoundException;
 import be.cyimena.airbnb.assetsservice.repositories.BookingRepository;
-import be.cyimena.airbnb.assetsservice.models.Booking;
+import be.cyimena.airbnb.assetsservice.web.models.BookingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,27 +20,27 @@ public class BookingController {
     private BookingRepository bookingRepository;
 
     @GetMapping("/bookings/{id}")
-    public Booking getBooking(@PathVariable Integer id) {
+    public BookingDto getBooking(@PathVariable Integer id) {
         return bookingRepository.findById(id).orElseThrow(() -> new BookingNotFoundException(id));
     }
 
     @GetMapping("/bookings")
-    public Page<Booking> getBookings(Pageable pageable){
+    public Page<BookingDto> getBookings(Pageable pageable){
         return bookingRepository.findAll(pageable);
     }
 
     @GetMapping("/users/{id}/bookings")
-    public Page<Booking> getAllBookingsByUser(@PathVariable Integer id, Pageable pageable) {
+    public Page<BookingDto> getAllBookingsByUser(@PathVariable Integer id, Pageable pageable) {
         return this.bookingRepository.findByUserId(id, pageable);
     }
 
     @GetMapping("/realestates/{id}/bookings")
-    public Page<Booking> getAllBookingsByRealEstate(@PathVariable Integer id, Pageable pageable) {
+    public Page<BookingDto> getAllBookingsByRealEstate(@PathVariable Integer id, Pageable pageable) {
         return this.bookingRepository.findByRealEstateId(id, pageable);
     }
 
     @PostMapping("/bookings")
-    public ResponseEntity<String> createBooking(@RequestBody Booking booking, Pageable pageable) {
+    public ResponseEntity<String> createBooking(@RequestBody BookingDto booking, Pageable pageable) {
         LocalDateTime startDate = booking.getStartDate();
         LocalDateTime endDate = booking.getEndDate();
 
@@ -62,7 +62,7 @@ public class BookingController {
     }
 
     @PutMapping("/bookings/{id}")
-    public Booking updateBooking(@PathVariable Integer id) {
+    public BookingDto updateBooking(@PathVariable Integer id) {
         // instead of deleting we add the canceled status
         return bookingRepository.findById(id).map(b -> {
             b.setStatus("cancelled");

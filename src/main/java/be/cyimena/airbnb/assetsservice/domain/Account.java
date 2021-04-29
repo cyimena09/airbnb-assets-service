@@ -1,6 +1,6 @@
-package be.cyimena.airbnb.assetsservice.models;
+package be.cyimena.airbnb.assetsservice.domain;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;

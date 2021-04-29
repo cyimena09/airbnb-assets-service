@@ -2,7 +2,7 @@ package be.cyimena.airbnb.assetsservice.services.impl;
 
 import be.cyimena.airbnb.assetsservice.exceptions.UserNotFoundException;
 import be.cyimena.airbnb.assetsservice.repositories.UserRepository;
-import be.cyimena.airbnb.assetsservice.models.User;
+import be.cyimena.airbnb.assetsservice.web.models.UserDto;
 import be.cyimena.airbnb.assetsservice.services.IUserService;
 
 import org.springframework.data.domain.Page;
@@ -20,27 +20,27 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Page<User> getUsers(Pageable pageable) {
+    public Page<UserDto> getUsers(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
 
     @Override
-    public User getUserById(Integer userId) {
+    public UserDto getUserById(Integer userId) {
         return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
     }
 
     @Override
-    public Page<User> getUserByFilter(String firstName, Pageable pageable) {
+    public Page<UserDto> getUserByFilter(String firstName, Pageable pageable) {
         return userRepository.findUserByFirstName(firstName, pageable);
     }
 
     @Override
-    public User createUser(User user) {
+    public UserDto createUser(UserDto user) {
         return this.userRepository.save(user);
     }
 
     @Override
-    public User updateUser(Integer userId, User user) {
+    public UserDto updateUser(Integer userId, UserDto user) {
         return userRepository.findById(userId).map(t -> {
             t.setFirstName(user.getFirstName());
             t.setLastName(user.getLastName());

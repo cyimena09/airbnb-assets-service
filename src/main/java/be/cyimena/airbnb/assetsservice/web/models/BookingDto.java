@@ -1,4 +1,4 @@
-package be.cyimena.airbnb.assetsservice.models;
+package be.cyimena.airbnb.assetsservice.web.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 @Data
 @Table(name = "bookings")
-public class Booking {
+public class BookingDto {
 
     // ATTRIBUTES
 
@@ -21,11 +21,11 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserDto user;
 
     @ManyToOne
     @JoinColumn(name = "realestate_id")
-    private RealEstate realEstate;
+    private RealEstateDto realEstate;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startDate;

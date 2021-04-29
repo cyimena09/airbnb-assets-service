@@ -1,18 +1,18 @@
 package be.cyimena.airbnb.assetsservice.services;
 
-import be.cyimena.airbnb.assetsservice.models.RealEstate;
+import be.cyimena.airbnb.assetsservice.web.models.RealEstateDto;
 
 import java.util.List;
 
 public interface IRealEstateService {
 
-    List<RealEstate> getRealEstates();
+    List<RealEstateDto> getRealEstates();
 
-    RealEstate getRealEstateById(Integer realEstateId);
+    RealEstateDto getRealEstateById(Integer realEstateId);
 
-    RealEstate createRealEstate(RealEstate realEstate);
+    RealEstateDto createRealEstate(RealEstateDto realEstate);
 
-    RealEstate updateRealEstate(RealEstate realEstate);
+    RealEstateDto updateRealEstate(RealEstateDto realEstate);
 
     void deleteRealEstate(Integer realEstateId);
 

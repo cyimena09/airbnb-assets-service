@@ -1,4 +1,4 @@
-package be.cyimena.airbnb.assetsservice.models;
+package be.cyimena.airbnb.assetsservice.domain;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;

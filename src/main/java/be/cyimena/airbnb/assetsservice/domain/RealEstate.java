@@ -1,4 +1,4 @@
-package be.cyimena.airbnb.assetsservice.models;
+package be.cyimena.airbnb.assetsservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

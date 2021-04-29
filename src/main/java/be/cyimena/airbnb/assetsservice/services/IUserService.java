@@ -1,20 +1,20 @@
 package be.cyimena.airbnb.assetsservice.services;
 
-import be.cyimena.airbnb.assetsservice.models.User;
+import be.cyimena.airbnb.assetsservice.web.models.UserDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IUserService {
 
-    Page<User> getUsers(Pageable pageable);
+    Page<UserDto> getUsers(Pageable pageable);
 
-    User getUserById(Integer userId);
+    UserDto getUserById(Integer userId);
 
-    Page<User> getUserByFilter(String firstName, Pageable pageable);
+    Page<UserDto> getUserByFilter(String firstName, Pageable pageable);
 
-    User createUser(User User);
+    UserDto createUser(UserDto User);
 
-    User updateUser(Integer userId, User user);
+    UserDto updateUser(Integer userId, UserDto user);
 
     void deleteUser(Integer userId);
 

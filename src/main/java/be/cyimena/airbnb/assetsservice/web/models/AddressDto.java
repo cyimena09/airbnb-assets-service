@@ -1,4 +1,4 @@
-package be.cyimena.airbnb.assetsservice.models;
+package be.cyimena.airbnb.assetsservice.web.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.UUID;
 @Entity
 @Data
 @Table(name = "address")
-public class Address {
+public class AddressDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,10 +29,10 @@ public class Address {
 
     @OneToOne(mappedBy = "address")
     @JsonIgnore
-    private RealEstate user;
+    private RealEstateDto user;
 
     @OneToOne(mappedBy = "address")
     @JsonIgnore
-    private RealEstate realEstate;
+    private RealEstateDto realEstate;
 
 }

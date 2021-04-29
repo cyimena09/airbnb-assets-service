@@ -1,8 +1,8 @@
-package be.cyimena.airbnb.assetsservice.controllers;
+package be.cyimena.airbnb.assetsservice.web.controllers;
 
 import be.cyimena.airbnb.assetsservice.repositories.RealEstateRepository;
 import be.cyimena.airbnb.assetsservice.exceptions.RealEstateNotFoundException;
-import be.cyimena.airbnb.assetsservice.models.RealEstate;
+import be.cyimena.airbnb.assetsservice.web.models.RealEstateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,22 +17,22 @@ public class RealEstateController {
     private RealEstateRepository realEstateRepository;
 
     @GetMapping("/real_estates/{id}")
-    public RealEstate getRealEstateById(@PathVariable Integer id) {
+    public RealEstateDto getRealEstateById(@PathVariable Integer id) {
         return realEstateRepository.findById(id).orElseThrow(() -> new RealEstateNotFoundException(id));
     }
 
     @GetMapping("/real_estates")
-    public Page<RealEstate> getAllRealEstates(Pageable pageable) {
+    public Page<RealEstateDto> getAllRealEstates(Pageable pageable) {
         return realEstateRepository.findAll(pageable);
     }
 
     @GetMapping("/real_estates/users/{id}")
-    public Page<RealEstate> getRealEstatesByUserId(@PathVariable Integer id, Pageable pageable) {
+    public Page<RealEstateDto> getRealEstatesByUserId(@PathVariable Integer id, Pageable pageable) {
         return realEstateRepository.findRealEstatesByUserId(id, pageable);
     }
 
     @GetMapping("/real_estates/search")
-    public Page<RealEstate> getRealEstatesByFiltre(
+    public Page<RealEstateDto> getRealEstatesByFiltre(
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "country", required = false) String country,
             @RequestParam(value = "city", required = false) String city,
@@ -44,12 +44,12 @@ public class RealEstateController {
     }
 
     @PostMapping("/real_estates")
-    public RealEstate createRealEstate(@RequestBody RealEstate realEstate) {
+    public RealEstateDto createRealEstate(@RequestBody RealEstateDto realEstate) {
         return this.realEstateRepository.save(realEstate);
     }
 
     @PutMapping("real_estates/{id}")
-    public RealEstate updateRealEstate(@PathVariable Integer id, @RequestBody RealEstate realEstate) {
+    public RealEstateDto updateRealEstate(@PathVariable Integer id, @RequestBody RealEstateDto realEstate) {
         return realEstateRepository.findById(id).map(r -> {
             r.setName(realEstate.getName());
             r.setPrice(realEstate.getPrice());

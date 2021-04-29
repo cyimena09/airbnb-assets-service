@@ -1,6 +1,6 @@
-package be.cyimena.airbnb.assetsservice.controllers;
+package be.cyimena.airbnb.assetsservice.web.controllers;
 
-import be.cyimena.airbnb.assetsservice.models.User;
+import be.cyimena.airbnb.assetsservice.web.models.UserDto;
 import be.cyimena.airbnb.assetsservice.services.IUserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,28 +21,28 @@ public class UserController {
     // METHODS
 
     @GetMapping("/users")
-    public Page<User> getUsers(Pageable pageable) {
+    public Page<UserDto> getUsers(Pageable pageable) {
         return this.userService.getUsers(pageable);
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable Integer id) {
+    public UserDto getUserById(@PathVariable Integer id) {
         return this.userService.getUserById(id);
     }
 
     @GetMapping("/users/by/filter")
-    public Page<User> getUserByFilter(Pageable pageable, @RequestParam(value = "firstName", required = false) String firstName) {
+    public Page<UserDto> getUserByFilter(Pageable pageable, @RequestParam(value = "firstName", required = false) String firstName) {
         return this.userService.getUserByFilter(firstName, pageable);
     }
 
     @PostMapping("/users")
-    public User createUser(@RequestBody User user) {
+    public UserDto createUser(@RequestBody UserDto user) {
         System.out.println("Création de l'utilisateur");
         return this.userService.createUser(user);
     }
 
     @PutMapping("users/{userId}")
-    public User updateUser(@PathVariable Integer userId, @RequestBody User user) {
+    public UserDto updateUser(@PathVariable Integer userId, @RequestBody UserDto user) {
         return this.userService.updateUser(userId, user);
     }
 

@@ -1,14 +1,16 @@
 package be.cyimena.airbnb.assetsservice.repositories;
 
-import be.cyimena.airbnb.assetsservice.web.models.UserDto;
+import be.cyimena.airbnb.assetsservice.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends JpaRepository<UserDto, Integer> {
+import java.util.UUID;
 
-    Page<UserDto> findUserByFirstName(String firstName, Pageable pageable);
+@Repository
+public interface UserRepository extends JpaRepository<User, UUID> {
+
+    Page<User> findUserByFirstName(String firstName, Pageable pageable);
 
 }

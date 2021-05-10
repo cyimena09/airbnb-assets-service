@@ -1,20 +1,26 @@
 package be.cyimena.airbnb.assetsservice.services;
 
 import be.cyimena.airbnb.assetsservice.web.models.RealEstateDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import java.util.UUID;
 
 public interface IRealEstateService {
 
-    List<RealEstateDto> getRealEstates();
+    Page<RealEstateDto> getRealEstates(Pageable pageable);
 
-    RealEstateDto getRealEstateById(Integer realEstateId);
+    RealEstateDto getRealEstateById(UUID realEstateId);
 
-    RealEstateDto createRealEstate(RealEstateDto realEstate);
+    Page<RealEstateDto> getRealEstatesByFilter(String type, String country, String city, Double price, Integer bedroom, Pageable pageable);
 
-    RealEstateDto updateRealEstate(RealEstateDto realEstate);
+    Page<RealEstateDto> getRealEstatesByUserId(UUID userId, Pageable pageable);
 
-    void deleteRealEstate(Integer realEstateId);
+    void createRealEstate(RealEstateDto realEstate);
+
+    void updateRealEstate(RealEstateDto realEstate);
+
+    void deleteRealEstate(UUID realEstateId);
 
 }
 

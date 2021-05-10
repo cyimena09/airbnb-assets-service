@@ -1,17 +1,16 @@
 package be.cyimena.airbnb.assetsservice.services;
 
 import be.cyimena.airbnb.assetsservice.web.models.BookingDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface IBookingService {
 
-    List<BookingDto> getBookings();
+    Page<BookingDto> getBookings();
 
     BookingDto getBookingById(Integer realEstateId);
 
-    BookingDto createBooking(BookingDto realEstate);
+    void createBooking(BookingDto realEstate);
 
-    BookingDto updateBooking(BookingDto realEstate);
+    void updateBooking(BookingDto realEstate);
 
 }

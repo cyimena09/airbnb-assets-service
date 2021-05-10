@@ -1,7 +1,9 @@
 package be.cyimena.airbnb.assetsservice.exceptions;
 
+import java.util.UUID;
+
 public class BookingNotFoundException extends RuntimeException {
-    public BookingNotFoundException(Integer id) {
+    public BookingNotFoundException(UUID id) {
         super("No reservation with id : " + id);
     }
 }

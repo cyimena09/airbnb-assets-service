@@ -14,7 +14,7 @@ import java.util.UUID;
 public class RealEstate implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
     @Column(name = "realestate_id", updatable = false, nullable = false)
     private UUID id;
 

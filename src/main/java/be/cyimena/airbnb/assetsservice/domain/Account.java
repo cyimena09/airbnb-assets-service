@@ -1,13 +1,15 @@
 package be.cyimena.airbnb.assetsservice.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Account implements Serializable {
     @Id
     @Column(name = "user_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)

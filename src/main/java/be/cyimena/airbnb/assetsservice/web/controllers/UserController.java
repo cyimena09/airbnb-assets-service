@@ -2,23 +2,19 @@ package be.cyimena.airbnb.assetsservice.web.controllers;
 
 import be.cyimena.airbnb.assetsservice.web.models.UserDto;
 import be.cyimena.airbnb.assetsservice.services.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/api/v1/assets")
 public class UserController {
 
-    private final IUserService userService;
-
-    // CONSTRUCTOR
-
-    public UserController(IUserService userService) {
-        this.userService = userService;
-    }
-
-    // METHODS
+    @Autowired
+    private IUserService userService;
 
     @GetMapping("/users")
     public Page<UserDto> getUsers(Pageable pageable) {
@@ -26,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public UserDto getUserById(@PathVariable Integer id) {
+    public UserDto getUserById(@PathVariable UUID id) {
         return this.userService.getUserById(id);
     }
 
@@ -36,18 +32,18 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public UserDto createUser(@RequestBody UserDto user) {
+    public void createUser(@RequestBody UserDto user) {
         System.out.println("Création de l'utilisateur");
-        return this.userService.createUser(user);
+        this.userService.createUser(user);
     }
 
-    @PutMapping("users/{userId}")
-    public UserDto updateUser(@PathVariable Integer userId, @RequestBody UserDto user) {
-        return this.userService.updateUser(userId, user);
+    @PutMapping("users")
+    public void updateUser(@RequestBody UserDto user) {
+        this.userService.updateUser(user);
     }
 
     @DeleteMapping("users/{userId}")
-    public void deleteUser(@PathVariable Integer userId) {
+    public void deleteUser(@PathVariable UUID userId) {
         this.userService.deleteUser(userId);
     }
 

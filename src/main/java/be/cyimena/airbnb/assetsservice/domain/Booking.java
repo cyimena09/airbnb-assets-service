@@ -15,7 +15,7 @@ public class Booking {
     // ATTRIBUTES
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
     @Column(name = "booking_id", updatable = false, nullable = false)
     private UUID id;
 

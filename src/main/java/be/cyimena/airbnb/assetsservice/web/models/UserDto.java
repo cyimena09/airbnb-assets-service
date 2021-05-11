@@ -18,6 +18,6 @@ public class UserDto {
     private AddressDto address;
     private AccountDto account;
     private Set<RealEstateDto> realEstates;
-    Set<BookingDto> bookings;
+    private Set<BookingDto> bookings;
 
 }

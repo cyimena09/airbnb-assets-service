@@ -2,6 +2,7 @@ package be.cyimena.airbnb.assetsservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,8 +16,8 @@ public class RealEstate implements Serializable {
 
     @Id
     @GeneratedValue(generator = "UUID")
+    @Type(type="org.hibernate.type.UUIDCharType")
     @Column(name = "realestate_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-
     private UUID id;
 
     @Column(columnDefinition = "varchar(255)", nullable = false)
@@ -25,11 +26,10 @@ public class RealEstate implements Serializable {
     @Column(columnDefinition = "text")
     private String description;
 
-    private Integer bedroom;
-
-    private Boolean garden;
-
     private double price;
+    private Integer bedroom;
+    private Boolean hasGarden;
+    private Boolean isActive;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
@@ -37,18 +37,18 @@ public class RealEstate implements Serializable {
     @ManyToOne
     private Category category;
 
-    @ManyToMany
-    private Set<Goal> goals;
-
-    @ManyToOne
-    private User user;
-
     @JsonIgnore
     @OneToMany(mappedBy = "realEstate")
     private Set<Comment> comments;
 
+    @ManyToMany
+    private Set<Purpose> purposes;
+
     @JsonIgnore
     @OneToMany(mappedBy = "realEstate")
     private Set<Booking> bookings;
+
+    @ManyToOne
+    private User user;
 
 }

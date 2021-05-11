@@ -1,6 +1,6 @@
 package be.cyimena.airbnb.assetsservice.repositories;
 
-import be.cyimena.airbnb.assetsservice.domain.Goal;
+import be.cyimena.airbnb.assetsservice.domain.Purpose;
 import be.cyimena.airbnb.assetsservice.domain.RealEstate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,13 +20,13 @@ public interface RealEstateRepository extends JpaRepository<RealEstate, UUID> {
     @Query("SELECT re FROM RealEstate re " +
             "INNER JOIN re.address a " +
             "INNER JOIN re.bookings b " +
-            "WHERE (:type is null OR re.goals = :goals) " +
+            "WHERE (:type is null OR re.purposes = :purposes) " +
             "AND (:bedroom is null OR re.bedroom >= :bedroom) " +
             "AND (:price is null OR re.price <= :price) " +
             "AND (:country is null OR a.country = :country) " +
             "AND (:city is null OR a.city = :city) ")
     Page<RealEstate> findRealEstatesByFilter(
-            @Param("goals") Set<Goal> goals,
+            @Param("purposes") Set<Purpose> purposes,
             @Param("bedroom") Integer bedroom,
             @Param("price") Double price,
             @Param("country") String country,

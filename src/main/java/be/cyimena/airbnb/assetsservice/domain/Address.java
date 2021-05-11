@@ -3,6 +3,7 @@ package be.cyimena.airbnb.assetsservice.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -15,6 +16,7 @@ public class Address {
 
     @Id
     @GeneratedValue(generator = "UUID")
+    @Type(type="org.hibernate.type.UUIDCharType")
     @Column(name = "address_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
 

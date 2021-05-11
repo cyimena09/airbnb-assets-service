@@ -2,6 +2,7 @@ package be.cyimena.airbnb.assetsservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,8 +15,8 @@ public class Booking {
 
     @Id
     @GeneratedValue(generator = "UUID")
+    @Type(type="org.hibernate.type.UUIDCharType")
     @Column(name = "booking_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
-
     private UUID id;
 
     @ManyToOne

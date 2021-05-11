@@ -10,7 +10,10 @@ import java.util.UUID;
 @Data
 public class ProfileDto {
 
+    @Null
     private UUID id;
+
+    @NotNull
     private String name;
 
 }

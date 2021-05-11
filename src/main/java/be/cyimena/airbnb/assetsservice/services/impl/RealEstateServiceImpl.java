@@ -1,6 +1,6 @@
 package be.cyimena.airbnb.assetsservice.services.impl;
 
-import be.cyimena.airbnb.assetsservice.domain.Goal;
+import be.cyimena.airbnb.assetsservice.domain.Purpose;
 import be.cyimena.airbnb.assetsservice.exceptions.RealEstateNotFoundException;
 import be.cyimena.airbnb.assetsservice.mappers.IRealEstateMapper;
 import be.cyimena.airbnb.assetsservice.repositories.RealEstateRepository;
@@ -40,10 +40,10 @@ public class RealEstateServiceImpl implements IRealEstateService {
     }
 
     @Override
-    public Page<RealEstateDto> getRealEstatesByFilter(Set<Goal> goals, String country, String city, Double price,
+    public Page<RealEstateDto> getRealEstatesByFilter(Set<Purpose> purposes, String country, String city, Double price,
                                                       Integer bedroom, Pageable pageable) {
 
-        return realEstateRepository.findRealEstatesByFilter(goals, bedroom, price, country, city, pageable)
+        return realEstateRepository.findRealEstatesByFilter(purposes, bedroom, price, country, city, pageable)
                 .map(realEstateMapper.INSTANCE::mapToRealEstateDto);
     }
 

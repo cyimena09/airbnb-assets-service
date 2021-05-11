@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Data
-public class GoalDto {
+public class PurposeDto {
 
     private UUID id;
     private String name;

@@ -13,13 +13,13 @@ public class RealEstateDto implements Serializable {
     private String name;
     private String description;
     private Integer bedroom;
-    private Boolean garden;
+    private Boolean hasGarden;
     private double price;
     private AddressDto address;
     private CategoryDto category;
-    private GoalDto goal;
+    private PurposeDto purpose;
     private UserDto user;
-    Set<CommentDto> comments;
-    Set<BookingDto> bookings;
+    private Set<CommentDto> comments;
+    private Set<BookingDto> bookings;
 
 }

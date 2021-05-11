@@ -15,7 +15,7 @@ public class Goal {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @Column(name = "goal_id", updatable = false, nullable = false)
+    @Column(name = "goal_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
 
     @Column(columnDefinition = "varchar(255)", nullable = false)

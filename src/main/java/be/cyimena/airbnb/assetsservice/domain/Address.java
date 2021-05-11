@@ -1,7 +1,6 @@
 package be.cyimena.airbnb.assetsservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +15,7 @@ public class Address {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @Column(name = "address_id")
+    @Column(name = "address_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
 
     @Column(nullable = false)

@@ -3,8 +3,6 @@ package be.cyimena.airbnb.assetsservice.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -19,7 +17,8 @@ public class User {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @Column(name = "user_id", updatable = false, nullable = false)
+    @Column(name = "user_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
+
     private UUID id;
 
     @Column(columnDefinition = "varchar(255)", nullable = false)

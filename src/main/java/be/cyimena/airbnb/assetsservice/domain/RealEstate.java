@@ -15,7 +15,8 @@ public class RealEstate implements Serializable {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @Column(name = "realestate_id", updatable = false, nullable = false)
+    @Column(name = "realestate_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
+
     private UUID id;
 
     @Column(columnDefinition = "varchar(255)", nullable = false)

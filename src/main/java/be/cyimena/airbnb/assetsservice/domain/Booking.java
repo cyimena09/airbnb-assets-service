@@ -14,7 +14,8 @@ public class Booking {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @Column(name = "booking_id", updatable = false, nullable = false)
+    @Column(name = "booking_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
+
     private UUID id;
 
     @ManyToOne
@@ -25,15 +26,15 @@ public class Booking {
     @JoinColumn(name = "realestate_id")
     private RealEstate realEstate;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startDate;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endDate;
 
-    @Column(columnDefinition = "varchar(255)",  nullable = false)
+    @Column(columnDefinition = "varchar(255)", nullable = false)
     private String status;
 
-    private  Integer rating;
+    private Integer rating;
 
 }

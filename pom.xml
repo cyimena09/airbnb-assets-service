@@ -19,6 +19,8 @@
         <!--        MAPSTRUCT-->
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
     </properties>
+
+    <!--    DEPENDENCIES-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,11 +54,27 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>validation-api</artifactId>
+                    <groupId>javax.validation</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!--        MAPSTRUCT DEPENDENCY-->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0.1</version>
         </dependency>
     </dependencies>
 

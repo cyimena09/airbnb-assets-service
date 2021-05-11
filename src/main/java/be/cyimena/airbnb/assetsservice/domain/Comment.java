@@ -17,7 +17,7 @@ public class Comment {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @Column(name = "comment_id", updatable = false, nullable = false)
+    @Column(name = "comment_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
 
     private String text;

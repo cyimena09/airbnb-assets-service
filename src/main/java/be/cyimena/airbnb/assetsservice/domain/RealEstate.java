@@ -21,8 +21,7 @@ public class RealEstate implements Serializable {
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String name;
 
-    private String type;
-
+    @Column(columnDefinition = "text")
     private String description;
 
     private Integer bedroom;
@@ -35,14 +34,20 @@ public class RealEstate implements Serializable {
     private Address address;
 
     @ManyToOne
+    private Category category;
+
+    @ManyToMany
+    private Set<Goal> goals;
+
+    @ManyToOne
     private User user;
 
     @JsonIgnore
     @OneToMany(mappedBy = "realEstate")
-    Set<Comment> comments;
+    private Set<Comment> comments;
 
     @JsonIgnore
     @OneToMany(mappedBy = "realEstate")
-    Set<Booking> bookings;
+    private Set<Booking> bookings;
 
 }

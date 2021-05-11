@@ -1,5 +1,6 @@
 package be.cyimena.airbnb.assetsservice.services.impl;
 
+import be.cyimena.airbnb.assetsservice.domain.Goal;
 import be.cyimena.airbnb.assetsservice.exceptions.RealEstateNotFoundException;
 import be.cyimena.airbnb.assetsservice.mappers.IRealEstateMapper;
 import be.cyimena.airbnb.assetsservice.repositories.RealEstateRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -38,10 +40,10 @@ public class RealEstateServiceImpl implements IRealEstateService {
     }
 
     @Override
-    public Page<RealEstateDto> getRealEstatesByFilter(String type, String country, String city, Double price,
+    public Page<RealEstateDto> getRealEstatesByFilter(Set<Goal> goals, String country, String city, Double price,
                                                       Integer bedroom, Pageable pageable) {
 
-        return realEstateRepository.findRealEstatesByFilter(type, bedroom, price, country, city, pageable)
+        return realEstateRepository.findRealEstatesByFilter(goals, bedroom, price, country, city, pageable)
                 .map(realEstateMapper.INSTANCE::mapToRealEstateDto);
     }
 

@@ -3,6 +3,8 @@ package be.cyimena.airbnb.assetsservice.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -46,7 +48,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    Set<Booking> bookings;
+    private Set<Booking> bookings;
 
 }
 

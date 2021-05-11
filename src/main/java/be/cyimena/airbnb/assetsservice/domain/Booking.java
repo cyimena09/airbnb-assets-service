@@ -12,8 +12,6 @@ import java.util.UUID;
 @Table(name = "bookings")
 public class Booking {
 
-    // ATTRIBUTES
-
     @Id
     @GeneratedValue(generator = "UUID")
     @Column(name = "booking_id", updatable = false, nullable = false)

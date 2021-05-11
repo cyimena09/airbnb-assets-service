@@ -1,9 +1,11 @@
 package be.cyimena.airbnb.assetsservice.services;
 
+import be.cyimena.airbnb.assetsservice.domain.Goal;
 import be.cyimena.airbnb.assetsservice.web.models.RealEstateDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Set;
 import java.util.UUID;
 
 public interface IRealEstateService {
@@ -12,7 +14,7 @@ public interface IRealEstateService {
 
     RealEstateDto getRealEstateById(UUID realEstateId);
 
-    Page<RealEstateDto> getRealEstatesByFilter(String type, String country, String city, Double price, Integer bedroom, Pageable pageable);
+    Page<RealEstateDto> getRealEstatesByFilter(Set<Goal> goals, String country, String city, Double price, Integer bedroom, Pageable pageable);
 
     Page<RealEstateDto> getRealEstatesByUserId(UUID userId, Pageable pageable);
 

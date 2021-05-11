@@ -23,9 +23,9 @@ public class Address {
     @Column(nullable = false)
     private String street;
     @Column(nullable = false)
-    private Integer streetNumber;
+    private String streetNumber;
     @Column(nullable = false)
-    private Long PostalCode;
+    private String PostalCode;
     @Column(nullable = false)
     private String city;
     @Column(nullable = false)
@@ -33,7 +33,7 @@ public class Address {
 
     @OneToOne(mappedBy = "address")
     @JsonIgnore
-    private RealEstate user;
+    private User user;
 
     @OneToOne(mappedBy = "address")
     @JsonIgnore

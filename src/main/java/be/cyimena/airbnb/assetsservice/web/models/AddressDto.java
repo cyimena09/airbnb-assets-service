@@ -9,8 +9,8 @@ public class AddressDto {
 
     private UUID id;
     private String street;
-    private Integer streetNumber;
-    private Long PostalCode;
+    private String streetNumber;
+    private String PostalCode;
     private String city;
     private String country;
     private RealEstateDto user;

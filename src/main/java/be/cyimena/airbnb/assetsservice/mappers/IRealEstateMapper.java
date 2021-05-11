@@ -5,7 +5,7 @@ import be.cyimena.airbnb.assetsservice.web.models.RealEstateDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {IAddressMapper.class})
 public interface IRealEstateMapper {
     IRealEstateMapper INSTANCE = Mappers.getMapper(IRealEstateMapper.class);
 

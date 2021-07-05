@@ -1,4 +1,4 @@
-package be.cyimena.airbnb.assetsservice.tools;
+package be.cyimena.airbnb.assetsservice.utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

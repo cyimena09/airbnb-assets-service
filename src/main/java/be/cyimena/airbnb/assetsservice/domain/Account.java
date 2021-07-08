@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Account implements Serializable {
 
     @Id
-    @Type(type="org.hibernate.type.UUIDCharType")
+    @Type(type = "org.hibernate.type.UUIDCharType")
     @Column(name = "user_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
 
@@ -31,12 +31,12 @@ public class Account implements Serializable {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "user_profile",
-            joinColumns = @JoinColumn (name = "user_id"),
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "profile_id"))
     private Set<Profile> profiles = new HashSet<>();
 

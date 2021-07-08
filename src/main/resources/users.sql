@@ -1,5 +1,3 @@
-insert into users (user_id, first_name, last_name, phone_number) values ('77cea68a-8511-4b1a-831a-818b6ccf2b46', 'Hettie', 'Josey', '765-500-6220');
-insert into users (user_id, first_name, last_name, phone_number) values ('f1a88db9-3fdc-4e78-98b6-29464b26ba6a', 'Chancey', 'Paget', '406-129-4172');
 insert into users (user_id, first_name, last_name, phone_number) values ('737814c0-f2de-4b6d-92ef-5ed583cfcfc4', 'Templeton', 'Bell', '281-963-3638');
 insert into users (user_id, first_name, last_name, phone_number) values ('d404a469-9f0e-4e47-b426-31773dfd4b8a', 'Orelee', 'Chawner', '377-802-5619');
 insert into users (user_id, first_name, last_name, phone_number) values ('82287c0e-d941-469e-9737-9c0e6ce07227', 'Alicea', 'Marsay', '382-103-9946');

@@ -5,6 +5,8 @@ import be.cyimena.airbnb.assetsservice.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -26,6 +28,12 @@ public class UserController {
         return this.userService.getUserById(id);
     }
 
+    @GetMapping(path = "/users/by/email/{userEmail}")
+    public ResponseEntity<UserDto> getUserByEmail(@PathVariable(name = "userEmail") String email) {
+        System.out.println(email);
+        return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);
+    }
+
     @GetMapping("/users/by/filter")
     public Page<UserDto> getUserByFilter(Pageable pageable, @RequestParam(value = "firstName", required = false) String firstName) {
         return this.userService.getUserByFilter(firstName, pageable);
@@ -33,7 +41,6 @@ public class UserController {
 
     @PostMapping("/users")
     public void createUser(@RequestBody UserDto user) {
-        System.out.println("Création de l'utilisateur");
         this.userService.createUser(user);
     }
 

@@ -13,6 +13,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private String birthDate;
     private Timestamp createdDate;
     private Timestamp lastModifiedDate;
     private AddressDto address;

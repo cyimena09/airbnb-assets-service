@@ -31,6 +31,9 @@ public class User {
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String phoneNumber;
 
+    @Column(columnDefinition = "varchar(255)", nullable = false)
+    private String birthDate;
+
     @CreationTimestamp
     @Column(updatable = false)
     private Timestamp createdDate;
@@ -40,7 +43,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Account account;
 
     @OneToMany
@@ -54,4 +58,3 @@ public class User {
     private Set<Rating> ratings;
 
 }
-

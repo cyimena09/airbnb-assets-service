@@ -12,6 +12,8 @@ public interface IUserService {
 
     UserDto getUserById(UUID userId);
 
+    UserDto getUserByEmail(String email);
+
     Page<UserDto> getUserByFilter(String firstName, Pageable pageable);
 
     void createUser(UserDto User);

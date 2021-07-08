@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/v1/assets/authenticate").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/assets/users").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/assets/users").hasAuthority(ProfileEnum.ADMIN.toString())
+                .antMatchers("/stomp").permitAll() // websocket authorization
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -42,4 +43,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
 }

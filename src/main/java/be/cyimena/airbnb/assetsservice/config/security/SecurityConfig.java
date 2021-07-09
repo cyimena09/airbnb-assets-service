@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/assets/authenticate").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/assets/users").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/assets/users").hasAuthority(ProfileEnum.ADMIN.toString())
+                .antMatchers(HttpMethod.GET, "/api/v1/assets/users").permitAll()
                 .antMatchers("/stomp").permitAll() // websocket authorization
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

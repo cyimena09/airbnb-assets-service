@@ -30,7 +30,6 @@ public class UserController {
 
     @GetMapping(path = "/users/by/email/{userEmail}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable(name = "userEmail") String email) {
-        System.out.println(email);
         return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);
     }
 

@@ -30,9 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/assets/authenticate").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/assets/users").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/assets/users").permitAll()
-                .antMatchers("/stomp").permitAll() // websocket authorization
+                .antMatchers(HttpMethod.POST, "/api/v1/assets/users").permitAll()
+                // realEstates
+                .antMatchers(HttpMethod.GET, "/api/v1/assets/real_estates").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/assets/real_estates").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/assets/real_estates/{id}").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/assets/real_estates/{id}").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

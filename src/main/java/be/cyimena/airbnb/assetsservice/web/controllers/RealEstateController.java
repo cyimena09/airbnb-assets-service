@@ -20,6 +20,7 @@ public class RealEstateController {
 
     @GetMapping("/real_estates/{id}")
     public RealEstateDto getRealEstateById(@PathVariable UUID id) {
+        System.out.println("récupération des real estates");
         return this.realEstateService.getRealEstateById(id);
     }
 

@@ -1,5 +1,6 @@
 package be.cyimena.airbnb.assetsservice.services.impl;
 
+import be.cyimena.airbnb.assetsservice.domain.Booking;
 import be.cyimena.airbnb.assetsservice.mappers.IBookingMapper;
 import be.cyimena.airbnb.assetsservice.repositories.BookingRepository;
 import be.cyimena.airbnb.assetsservice.services.IBookingService;
@@ -21,17 +22,18 @@ public class BookingServiceImpl implements IBookingService {
     }
 
     @Override
-    public BookingDto getBookingById(Integer realEstateId) {
+    public BookingDto getBookingById(Integer bookingId) {
         return null;
     }
 
     @Override
-    public void createBooking(BookingDto realEstate) {
-
+    public void createBooking(BookingDto bookingDto) {
+        Booking booking = this.bookingMapper.INSTANCE.mapToBooking(bookingDto);
+        this.bookingRepository.save(this.bookingMapper.INSTANCE.mapToBooking(bookingDto));
     }
 
     @Override
-    public void updateBooking(BookingDto realEstate) {
+    public void updateBooking(BookingDto bookingDto) {
 
     }
 }

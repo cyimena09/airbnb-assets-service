@@ -10,6 +10,8 @@ import org.mapstruct.factory.Mappers;
 public interface IAddressMapper {
     IAddressMapper INSTANCE = Mappers.getMapper(IAddressMapper.class);
 
+    @Mapping(target = "realEstate", ignore = true)
+    @Mapping(target = "user", ignore = true)
     Address mapToAddress(AddressDto source);
 
     @Mapping(target = "realEstate", ignore = true)

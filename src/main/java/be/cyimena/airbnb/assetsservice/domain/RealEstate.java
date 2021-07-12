@@ -51,4 +51,6 @@ public class RealEstate implements Serializable {
     @ManyToOne
     private User user;
 
+    // todo add createaat
+
 }

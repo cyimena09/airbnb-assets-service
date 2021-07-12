@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -19,23 +20,23 @@ public class Booking {
     @Column(name = "booking_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp startDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp endDate;
+
+    @Column(columnDefinition = "varchar(255)", nullable = false)
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "realestate_id")
     private RealEstate realEstate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime startDate;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime endDate;
-
-    @Column(columnDefinition = "varchar(255)", nullable = false)
-    private String status;
-
-    private Integer rating;
+    //private Integer rating;
 
 }

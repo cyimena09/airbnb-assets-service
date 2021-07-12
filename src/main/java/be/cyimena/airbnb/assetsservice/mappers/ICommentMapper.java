@@ -5,7 +5,7 @@ import be.cyimena.airbnb.assetsservice.web.models.CommentDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {DateMapper.class})
 public interface ICommentMapper {
     ICommentMapper INSTANCE = Mappers.getMapper(ICommentMapper.class);
 

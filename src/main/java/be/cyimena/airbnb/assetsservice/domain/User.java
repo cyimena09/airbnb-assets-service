@@ -57,4 +57,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Rating> ratings;
 
+    @OneToMany
+    private Set<Comment> comments;
+
 }

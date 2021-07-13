@@ -13,5 +13,6 @@ public class CommentDto {
     private Timestamp createAt;
     private Timestamp updateAt;
     private RealEstateDto realEstate;
+    private UserDto user;
 
 }

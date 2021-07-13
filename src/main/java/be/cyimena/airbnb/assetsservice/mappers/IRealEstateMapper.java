@@ -11,9 +11,11 @@ public interface IRealEstateMapper {
     IRealEstateMapper INSTANCE = Mappers.getMapper(IRealEstateMapper.class);
 
     @Mapping(target = "bookings", ignore = true)
+    @Mapping(target = "comments", ignore = true)
     RealEstate mapToRealEstate(RealEstateDto source);
 
     @Mapping(target = "bookings", ignore = true)
+    @Mapping(target = "comments", ignore = true)
     RealEstateDto mapToRealEstateDto(RealEstate source);
 
 }

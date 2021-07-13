@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping(path = "/api/v1/assets")
 public class BookingController {
@@ -16,7 +18,7 @@ public class BookingController {
     private IBookingService bookingService;
 
     @GetMapping("/bookings/{id}")
-    public BookingDto getBookingById(@PathVariable Integer id) {
+    public BookingDto getBookingById(@PathVariable UUID id) {
         return bookingService.getBookingById(id);
     }
 
@@ -25,13 +27,13 @@ public class BookingController {
         return bookingService.getBookings();
     }
 
-    @GetMapping("/users/{id}/bookings")
-    public Page<BookingDto> getAllBookingsByUser(@PathVariable Integer id, Pageable pageable) {
-        return null;
+    @GetMapping("bookings/users/{id}/bookings")
+    public Page<BookingDto> getAllBookingsByUserId(@PathVariable UUID id, Pageable pageable) {
+        return this.bookingService.getBookingsByUserId(id, pageable);
     }
 
-    @GetMapping("/real_estates/{id}/bookings")
-    public Page<BookingDto> getAllBookingsByRealEstate(@PathVariable Integer id, Pageable pageable) {
+    @GetMapping("bookings/real_estates/{id}/bookings")
+    public Page<BookingDto> getAllBookingsByRealEstate(@PathVariable UUID id, Pageable pageable) {
         return null;
     }
 
@@ -59,7 +61,7 @@ public class BookingController {
     }
 
     @PutMapping("/bookings/{id}")
-    public void updateBooking(@PathVariable Integer id) {
+    public void updateBooking(@PathVariable UUID id) {
 
     }
 

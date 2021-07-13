@@ -35,4 +35,8 @@ public class Comment {
     @JoinColumn(name = "realestate_id")
     private RealEstate realEstate;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }

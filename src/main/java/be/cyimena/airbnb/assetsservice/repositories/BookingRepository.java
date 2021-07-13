@@ -12,19 +12,19 @@ import java.util.UUID;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, UUID> {
 
-    Page<Booking> findByUserId(Integer id, Pageable pageable);
+    Page<Booking> findByUserId(UUID id, Pageable pageable);
 
-    Page<Booking> findByRealEstateId(Integer id, Pageable pageable);
+    Page<Booking> findByRealEstateId(UUID id, Pageable pageable);
 
     // used for check if a reservation exist
     // find one il y a une erreur
-    Page<Booking> findAllByStartDateBetweenOrEndDateBetweenOrStartDateLessThanEqualAndEndDateGreaterThanEqual(
-            LocalDateTime startDateMin,
-            LocalDateTime startDateMax,
-            LocalDateTime endDateMin,
-            LocalDateTime endDateMax,
-            LocalDateTime endDateMin1,
-            LocalDateTime endDateMax2,
-            Pageable pageable);
+//    Page<Booking> findAllByStartDateBetweenOrEndDateBetweenOrStartDateLessThanEqualAndEndDateGreaterThanEqual(
+//            LocalDateTime startDateMin,
+//            LocalDateTime startDateMax,
+//            LocalDateTime endDateMin,
+//            LocalDateTime endDateMax,
+//            LocalDateTime endDateMin1,
+//            LocalDateTime endDateMax2,
+//            Pageable pageable);
 
 }

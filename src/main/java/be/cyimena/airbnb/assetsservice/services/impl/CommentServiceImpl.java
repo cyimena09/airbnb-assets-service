@@ -1,5 +1,8 @@
 package be.cyimena.airbnb.assetsservice.services.impl;
 
+import be.cyimena.airbnb.assetsservice.domain.Comment;
+import be.cyimena.airbnb.assetsservice.domain.RealEstate;
+import be.cyimena.airbnb.assetsservice.domain.User;
 import be.cyimena.airbnb.assetsservice.exceptions.CommentNotFoundException;
 import be.cyimena.airbnb.assetsservice.mappers.ICommentMapper;
 import be.cyimena.airbnb.assetsservice.repositories.CommentRepository;
@@ -7,6 +10,7 @@ import be.cyimena.airbnb.assetsservice.services.ICommentService;
 import be.cyimena.airbnb.assetsservice.web.models.CommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +23,20 @@ public class CommentServiceImpl implements ICommentService {
     ICommentMapper commentMapper;
 
     @Override
-    public Page<CommentDto> getCommentsByRealEstateId(UUID realEstateId) {
-        // TODO il faudrait ne pas récupérer le real estate associé
-        //return commentRepository.findCommentsByRealEstateId(realEstateId, Sort.by(Sort.Direction.DESC, "updateAt"));
-        return null;
+    public Page<CommentDto> getCommentsByRealEstateId(UUID realEstateId, Pageable pageable) {
+        return commentRepository.findCommentsByRealEstateId(realEstateId, pageable).map(commentMapper.INSTANCE::mapToCommentDto);
     }
 
     @Override
-    public void addComment(CommentDto commentDto) {
-        this.commentRepository.save(commentMapper.INSTANCE.mapToComment(commentDto));
+    public void createComment(CommentDto commentDto) {
+        User user = new User();
+        RealEstate realEstate = new RealEstate();
+        user.setId(commentDto.getUser().getId());
+        realEstate.setId(commentDto.getRealEstate().getId());
+        Comment comment = commentMapper.INSTANCE.mapToComment(commentDto);
+        comment.setUser(user);
+        comment.setRealEstate(realEstate);
+        this.commentRepository.save(comment);
     }
 
     @Override

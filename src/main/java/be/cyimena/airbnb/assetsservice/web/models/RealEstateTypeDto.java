@@ -1,13 +1,15 @@
 package be.cyimena.airbnb.assetsservice.web.models;
 
 import be.cyimena.airbnb.assetsservice.domain.RealEstate;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 import java.util.UUID;
 
-@Data
-public class PurposeDto {
+@Getter
+@Setter
+public class RealEstateTypeDto {
 
     private UUID id;
     private String name;

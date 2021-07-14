@@ -1,10 +1,10 @@
 package be.cyimena.airbnb.assetsservice.services.impl;
 
-import be.cyimena.airbnb.assetsservice.domain.Purpose;
 import be.cyimena.airbnb.assetsservice.exceptions.RealEstateNotFoundException;
 import be.cyimena.airbnb.assetsservice.mappers.IRealEstateMapper;
 import be.cyimena.airbnb.assetsservice.repositories.RealEstateRepository;
 import be.cyimena.airbnb.assetsservice.services.IRealEstateService;
+import be.cyimena.airbnb.assetsservice.web.models.FilterDto;
 import be.cyimena.airbnb.assetsservice.web.models.RealEstateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Service
@@ -40,11 +40,13 @@ public class RealEstateServiceImpl implements IRealEstateService {
     }
 
     @Override
-    public Page<RealEstateDto> getRealEstatesByFilter(Set<Purpose> purposes, String country, String city, Double price,
-                                                      Integer bedroom, Pageable pageable) {
+    public Page<RealEstateDto> getRealEstatesByFilter(FilterDto filterDto, Pageable pageable) {
 
-        return realEstateRepository.findRealEstatesByFilter(purposes, bedroom, price, country, city, pageable)
-                .map(realEstateMapper.INSTANCE::mapToRealEstateDto);
+        System.out.println("OK ON A REUSSI");
+        return null;
+
+//        return realEstateRepository.findRealEstatesByFilter(category, type, minBedroom, maxBedroom, minPrice, maxPrice, city, country, startDate, endDate, pageable)
+//                .map(realEstateMapper.INSTANCE::mapToRealEstateDto);
     }
 
     @Override

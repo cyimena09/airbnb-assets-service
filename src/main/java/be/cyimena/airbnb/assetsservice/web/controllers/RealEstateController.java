@@ -1,14 +1,14 @@
 package be.cyimena.airbnb.assetsservice.web.controllers;
 
-import be.cyimena.airbnb.assetsservice.domain.Purpose;
 import be.cyimena.airbnb.assetsservice.services.IRealEstateService;
+import be.cyimena.airbnb.assetsservice.web.models.FilterDto;
 import be.cyimena.airbnb.assetsservice.web.models.RealEstateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @RestController
@@ -34,15 +34,9 @@ public class RealEstateController {
     }
 
     @GetMapping("/real_estates/search")
-    public Page<RealEstateDto> getRealEstatesByFilter(
-            @RequestParam(value = "goals", required = false) Set<Purpose> purposes,
-            @RequestParam(value = "country", required = false) String country,
-            @RequestParam(value = "city", required = false) String city,
-            @RequestParam(value = "price", required = false) Double price,
-            @RequestParam(value = "bedroom", required = false) Integer bedroom,
-            Pageable pageable) {
+    public Page<RealEstateDto> getRealEstatesByFilter(@RequestBody FilterDto filter, Pageable pageable) {
 
-        return this.realEstateService.getRealEstatesByFilter(purposes, country, city, price, bedroom, pageable);
+        return this.realEstateService.getRealEstatesByFilter(filter, pageable);
     }
 
     @PostMapping("/real_estates")

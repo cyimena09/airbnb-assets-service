@@ -95,4 +95,4 @@ insert into users (user_id, first_name, last_name, phone_number) values ('7ee660
 insert into users (user_id, first_name, last_name, phone_number) values ('53235af0-ba50-4adc-89ad-5191e21a41a5', 'Amos', 'Danskine', '867-214-3492');
 insert into users (user_id, first_name, last_name, phone_number) values ('b1ba6314-4c49-4dd2-9152-1790becc2769', 'Thain', 'Gomar', '408-945-4984');
 insert into users (user_id, first_name, last_name, phone_number) values ('e0ceac24-4439-428b-815f-b27482ffca92', 'Barny', 'Glisane', '109-590-8254');
-insert into users (user_id, first_name, last_name, phone_number) values ('3cfbe6b8-58cb-433d-9bdf-f045f3522b97', 'Aeriela', 'Fruin', '617-820-3981');
+insert into users (user_id, first_name, last_name, phone_number) values ('3cfbe6b8-5xcb-433d-9bdf-f045f3522b97', 'Aeriela', 'Fruin', '617-820-3981');

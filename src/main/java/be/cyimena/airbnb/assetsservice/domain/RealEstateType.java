@@ -11,18 +11,19 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "purposes")
-public class Purpose {
+@Table(name = "types")
+public class RealEstateType {
 
     @Id
     @GeneratedValue(generator = "UUID")
     @Type(type="org.hibernate.type.UUIDCharType")
-    @Column(name = "purpose_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
+    @Column(name = "type_id", length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
 
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "purposes")
+    @OneToMany(mappedBy = "type")
     private Set<RealEstate> realEstates;
+
 }

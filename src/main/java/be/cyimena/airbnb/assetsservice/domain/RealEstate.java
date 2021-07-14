@@ -23,6 +23,12 @@ public class RealEstate implements Serializable {
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String name;
 
+    @ManyToOne
+    private RealEstateType type; // Villa, Apartment
+
+    @ManyToOne
+    private Category category; // Location, Sell
+
     @Column(columnDefinition = "text")
     private String description;
 
@@ -34,15 +40,9 @@ public class RealEstate implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @ManyToOne
-    private Category category;
-
     @JsonIgnore
     @OneToMany(mappedBy = "realEstate")
     private Set<Comment> comments;
-
-    @ManyToMany
-    private Set<Purpose> purposes;
 
     @JsonIgnore
     @OneToMany(mappedBy = "realEstate")

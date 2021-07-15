@@ -1,5 +1,6 @@
 package be.cyimena.airbnb.assetsservice.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
@@ -24,6 +25,7 @@ public class RealEstateType {
     private String name;
 
     @OneToMany(mappedBy = "type")
+    @JsonIgnore
     private Set<RealEstate> realEstates;
 
 }

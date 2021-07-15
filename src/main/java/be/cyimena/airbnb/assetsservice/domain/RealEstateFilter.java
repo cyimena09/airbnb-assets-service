@@ -7,7 +7,7 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-public class Filter {
+public class RealEstateFilter {
 
     private String category;
     private String type;

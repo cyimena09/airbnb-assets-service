@@ -16,16 +16,14 @@ public interface RealEstateRepository extends JpaRepository<RealEstate, UUID> {
     Page<RealEstate> findRealEstatesByUserId(UUID id, Pageable pageable);
 
     @Query("SELECT re FROM RealEstate re " +
-            "INNER JOIN re.address a " +
-            "INNER JOIN re.bookings b " +
-            "INNER JOIN re.type t " +
-            "INNER JOIN re.category c " +
+            "LEFT JOIN re.address a " +
+            "LEFT JOIN re.bookings b " +
+            "LEFT JOIN re.type t " +
+            "LEFT JOIN re.category c " +
             "WHERE c.name = :category " +
             "AND t.name = :type " +
             "AND re.bedroom >= :minBedroom AND re.bedroom <= :maxBedroom " +
-            "AND re.price >= :minPrice AND re.price <= :maxPrice " +
-            "AND a.city = :city " +
-            "AND a.country = :country")
+            "AND re.price >= :minPrice AND re.price <= :maxPrice ")
     Page<RealEstate> findRealEstatesByFilter(
             @Param("category") String category,
             @Param("type") String type,
@@ -33,7 +31,7 @@ public interface RealEstateRepository extends JpaRepository<RealEstate, UUID> {
             @Param("maxBedroom") Integer maxBedroom,
             @Param("minPrice") Double minPrice,
             @Param("maxPrice") Double maxPrice,
-            @Param("city") String city,
-            @Param("country") String country,
+//            @Param("city") String city,
+//            @Param("country") String country,
             Pageable pageable);
 }

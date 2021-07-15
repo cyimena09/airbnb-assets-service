@@ -5,7 +5,11 @@ import be.cyimena.airbnb.assetsservice.web.models.FilterDto;
 import be.cyimena.airbnb.assetsservice.web.models.RealEstateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.OffsetDateTime;
@@ -33,10 +37,15 @@ public class RealEstateController {
         return this.realEstateService.getRealEstatesByUserId(id, pageable);
     }
 
-    @GetMapping("/real_estates/search")
-    public Page<RealEstateDto> getRealEstatesByFilter(@RequestBody FilterDto filter, Pageable pageable) {
+    @PostMapping("/real_estates/search")
+    public Page<RealEstateDto> getRealEstatesByFilter(
+            @RequestBody FilterDto filter, Pageable pageable,
+            @RequestParam(value = "test", required = false, defaultValue = "false") String test) {
 
-        return this.realEstateService.getRealEstatesByFilter(filter, pageable);
+        // todo min positive etc
+        System.out.println(test);
+        //Sort sort = new Sort();
+        return this.realEstateService.getRealEstatesByFilter(filter, PageRequest.of(3, 5));
     }
 
     @PostMapping("/real_estates")
